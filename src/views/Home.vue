@@ -1,10 +1,23 @@
 <template>
   <div class="contentWrapper">
-    <h1>Hello World</h1>
+    <MessageList />
+    <LoginBox />
   </div>
 </template>
 
-<script setup></script>
+<script>
+import MessageList from '@/components/MessageList.vue';
+import LoginBox from '@/components/LoginBox.vue';
+export default {
+  components: {
+    MessageList,
+    LoginBox
+  },
+  setup() {
+    return {};
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .contentWrapper {
