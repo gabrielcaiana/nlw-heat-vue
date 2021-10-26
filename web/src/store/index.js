@@ -1,11 +1,10 @@
-import { createApp } from 'vue'
 import { createStore } from 'vuex'
 
+import { authentication } from './modules/authentication'
+
 const store = createStore({
-  state() {
-    return {
-      default: null
-    }
+  modules: {
+    authentication
   }
 })
 
