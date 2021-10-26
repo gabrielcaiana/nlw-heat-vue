@@ -1,7 +1,7 @@
-# Vue 3 + Vite
+# NLW Heat Vue
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+O projeto NLW Heat foi desenvolvido inspirado na next level week da rocketseat
+desenvolvido originalmente com react, decidi reproduzir o mesmo projeto porém
+utilizando o VueJs 3, Tailwind e Vite.
 
-## Recommended IDE Setup
-
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+![preview nlw heat vue]("./assets/cover.png")

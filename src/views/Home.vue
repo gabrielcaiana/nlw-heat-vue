@@ -1,17 +1,20 @@
 <template>
   <div class="contentWrapper">
     <MessageList />
-    <LoginBox />
+    <!-- <LoginBox /> -->
+    <SendMessageForm />
   </div>
 </template>
 
 <script>
 import MessageList from '@/components/MessageList.vue';
 import LoginBox from '@/components/LoginBox.vue';
+import SendMessageForm from '../components/SendMessageForm.vue';
 export default {
   components: {
     MessageList,
-    LoginBox
+    LoginBox,
+    SendMessageForm
   },
   setup() {
     return {};

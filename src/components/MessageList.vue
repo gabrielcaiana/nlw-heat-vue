@@ -21,8 +21,8 @@
 
       <li class="message">
         <p class="messageContent">
-          Não vejo a hora de começar esse evento, com certeza vai ser o melhor
-          de todos os tempos, vamooo pra cima! 🔥🔥
+          Esse vai ser simplesmente fantástico! Bora aprender tudo em relação a
+          montagem de APIs GraphQL. Sem contar com as palestras e painéis.
         </p>
         <div class="messageUser">
           <div class="userImage">
@@ -37,8 +37,8 @@
 
       <li class="message">
         <p class="messageContent">
-          Não vejo a hora de começar esse evento, com certeza vai ser o melhor
-          de todos os tempos, vamooo pra cima! 🔥🔥
+          Sem dúvida as palestras vão ser úteis para a minha carreira e para a
+          de muitos 😍 #gorocket
         </p>
         <div class="messageUser">
           <div class="userImage">
