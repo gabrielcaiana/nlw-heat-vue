@@ -1,12 +1,13 @@
 <template>
   <div class="contentWrapper">
     <MessageList />
-    <!-- <LoginBox /> -->
-    <SendMessageForm />
+    <LoginBox v-if="!getToken" />
+    <SendMessageForm v-else />
   </div>
 </template>
 
 <script>
+import { useStore } from 'vuex';
 import MessageList from '@/components/MessageList.vue';
 import LoginBox from '@/components/LoginBox.vue';
 import SendMessageForm from '../components/SendMessageForm.vue';
@@ -14,10 +15,16 @@ export default {
   components: {
     MessageList,
     LoginBox,
-    SendMessageForm
+    SendMessageForm,
   },
   setup() {
-    return {};
+    const store = useStore();
+
+    const getToken = store.getters['authentication/getToken'];
+
+    return {
+      getToken,
+    };
   },
 };
 </script>

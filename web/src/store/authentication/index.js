@@ -3,8 +3,9 @@ import { mutations } from './mutations';
 import { getters } from './getters';
 
 export const authentication = {
+  namespaced: true,
   state: {
-    token: null,
+    token: '123',
   },
   actions,
   mutations,
