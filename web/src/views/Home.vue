@@ -22,8 +22,23 @@ export default {
 
     const getToken = store.getters['authentication/getToken'];
 
+    const url = window.location.href;
+    const hasGithubCode = url.includes('?code=');
+
+    if (hasGithubCode) {
+      const [urlWihoutCode, githubCode] = url.split('?code=');
+      window.history.pushState({}, '', urlWihoutCode);
+
+      store.dispatch("authentication/getProfile", githubCode)
+    }
+
+    const token = store.getters['authentication/token']
+    const user = store.getters['authentication/user']
+
     return {
       getToken,
+      token,
+      user
     };
   },
 };

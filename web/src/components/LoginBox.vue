@@ -1,12 +1,20 @@
 <template>
   <div class="loginBoxWrapper">
     <strong>Entre e compartilhe sua mensagem</strong>
-    <a href="#" class="signInWithGithub"><i class="fab fa-github"></i>Entrar com Github</a>
+    <a :href="signInUrl" class="signInWithGithub"><i class="fab fa-github"></i>Entrar com Github</a>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  setup() {
+    const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=deb27542a07d446cca7b`
+
+    return {
+      signInUrl
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
