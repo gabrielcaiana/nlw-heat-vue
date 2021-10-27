@@ -1,17 +1,29 @@
-import { api } from '@/services/api';
+import { getAuth, getProfile } from "@/services/api"
 
 export const actions = {
-  getProfile: async ({ commit }, payload) => {
+  getAuth: async ({ commit }, payload) => {
     try {
-      const { status, data } = await api.post('authenticate', {
-        code: payload,
-      });
+      const { status, data } = await getAuth(payload)
 
       if (status === 200) {
         const { token, user } = data;
 
+        localStorage.setItem("@nlw7:token", token)
+
         commit('setToken', token);
         commit('setUser', user);
+      }
+    } catch (err) {
+      throw new Error({ error: err });
+    }
+  },
+
+  getProfile: async ({ commit }) => {
+    try {
+      const { status, data } = await getProfile('profile');
+
+      if (status === 200) {
+        commit('setUser', data);
       }
     } catch (err) {
       throw new Error({ error: err });

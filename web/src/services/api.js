@@ -1,5 +1,4 @@
-import axios from "axios"
+import service from "./http"
 
-export const api = axios.create({
-  baseURL: "http://localhost:4000"
-})
+export const getAuth = payload => service.post("authenticate", {code: payload })
+export const getProfile = () => service.get("profile")

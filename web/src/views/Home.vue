@@ -29,16 +29,11 @@ export default {
       const [urlWihoutCode, githubCode] = url.split('?code=');
       window.history.pushState({}, '', urlWihoutCode);
 
-      store.dispatch("authentication/getProfile", githubCode)
+      store.dispatch("authentication/getAuth", githubCode)
     }
 
-    const token = store.getters['authentication/token']
-    const user = store.getters['authentication/user']
-
     return {
-      getToken,
-      token,
-      user
+      getToken
     };
   },
 };
