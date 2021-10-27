@@ -29,4 +29,15 @@ export const actions = {
       throw new Error({ error: err });
     }
   },
+  
+  getLogout: async({commit}) => {
+    try{
+      localStorage.removeItem("@nlw7:token")
+
+      commit("cleanToken", null)
+      commit("cleanUser", null)
+    }catch(err) {
+      throw new Error(err)
+    }
+  }
 };

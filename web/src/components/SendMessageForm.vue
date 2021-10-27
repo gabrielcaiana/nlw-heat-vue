@@ -1,6 +1,6 @@
 <template>
   <div class="sendMessageFormWrapper">
-    <button class="signOutButton">
+    <button @click="logout" class="signOutButton">
       <i class="fas fa-sign-out-alt"></i>
     </button>
     <header class="userInformation">
@@ -30,7 +30,20 @@
 </template>
 
 <script>
-export default {};
+import {useStore } from "vuex"
+export default {
+  setup() {
+    const store = useStore()
+
+    const logout = () => {
+      store.dispatch("authentication/getLogout")
+    }
+
+    return {
+      logout
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
