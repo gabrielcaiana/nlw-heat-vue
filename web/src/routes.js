@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
   if (!token) {
     next();
   } else {
-    store.commit('authentication/setToken', token, {root: true});
+    store.commit('authentication/setToken', token);
     store.dispatch('authentication/getProfile')
   }
 

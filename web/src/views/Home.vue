@@ -8,6 +8,7 @@
 
 <script>
 import { useStore } from 'vuex';
+import { computed } from "vue"
 import MessageList from '@/components/MessageList.vue';
 import LoginBox from '@/components/LoginBox.vue';
 import SendMessageForm from '../components/SendMessageForm.vue';
@@ -20,7 +21,7 @@ export default {
   setup() {
     const store = useStore();
 
-    const getToken = store.getters['authentication/getToken'];
+    const getToken = computed(() => store.getters['authentication/getToken'])
 
     const url = window.location.href;
     const hasGithubCode = url.includes('?code=');
