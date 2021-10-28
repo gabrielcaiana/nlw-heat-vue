@@ -1,14 +1,16 @@
 <template>
   <div class="contentWrapper">
     <MessageList />
-    <LoginBox v-if="!getToken" />
-    <SendMessageForm v-else />
+    <transition name="slide" mode="out-in">
+      <LoginBox v-if="!getToken" />
+      <SendMessageForm v-else />
+    </transition>
   </div>
 </template>
 
 <script>
 import { useStore } from 'vuex';
-import { computed } from "vue"
+import { computed } from 'vue';
 import MessageList from '@/components/MessageList.vue';
 import LoginBox from '@/components/LoginBox.vue';
 import SendMessageForm from '../components/SendMessageForm.vue';
@@ -22,7 +24,7 @@ export default {
   setup() {
     const store = useStore();
 
-    const getToken = computed(() => store.getters['authentication/getToken'])
+    const getToken = computed(() => store.getters['authentication/getToken']);
 
     const url = window.location.href;
     const hasGithubCode = url.includes('?code=');
@@ -31,17 +33,28 @@ export default {
       const [urlWihoutCode, githubCode] = url.split('?code=');
       window.history.pushState({}, '', urlWihoutCode);
 
-      store.dispatch("authentication/getAuth", githubCode)
+      store.dispatch('authentication/getAuth', githubCode);
     }
 
     return {
-      getToken
+      getToken,
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 0.3s, transform 0.5s;
+}
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-30%);
+}
+
 .contentWrapper {
   max-width: 1200px;
   height: 100vh;
