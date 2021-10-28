@@ -1,9 +1,9 @@
-import { getAuth, getProfile } from "@/services/api"
+import { Auth, Profile } from "@/services/api"
 
 export const actions = {
   getAuth: async ({ commit }, payload) => {
     try {
-      const { status, data } = await getAuth(payload)
+      const { status, data } = await Auth(payload)
 
       if (status === 200) {
         const { token, user } = data;
@@ -20,7 +20,7 @@ export const actions = {
 
   getProfile: async ({ commit }) => {
     try {
-      const { status, data } = await getProfile();
+      const { status, data } = await Profile();
       
       if (status === 200) {
         await commit('setUser', data);

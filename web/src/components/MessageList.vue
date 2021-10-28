@@ -3,51 +3,18 @@
     <img src="../assets/logo.svg" alt="NLW Heat Vue" />
 
     <ul class="messageList">
-      <li class="message">
+      <li v-for="message in messages" :key="message.id" class="message">
         <p class="messageContent">
-          Não vejo a hora de começar esse evento, com certeza vai ser o melhor
-          de todos os tempos, vamooo pra cima! 🔥🔥
+         {{message.text}}
         </p>
         <div class="messageUser">
           <div class="userImage">
             <img
-              src="https://www.pinclipart.com/picdir/middle/93-935675_youtube-computer-icons-cartoon-download-clip-art-strong.png"
-              alt="Dianne Russell"
+              :src="message.user.avatar_url"
+              :alt="message.user.name"
             />
           </div>
-          <span>Gabriel Caiana</span>
-        </div>
-      </li>
-
-      <li class="message">
-        <p class="messageContent">
-          Esse vai ser simplesmente fantástico! Bora aprender tudo em relação a
-          montagem de APIs GraphQL. Sem contar com as palestras e painéis.
-        </p>
-        <div class="messageUser">
-          <div class="userImage">
-            <img
-              src="https://www.pinclipart.com/picdir/middle/93-935675_youtube-computer-icons-cartoon-download-clip-art-strong.png"
-              alt="Dianne Russell"
-            />
-          </div>
-          <span>Gabriel Caiana</span>
-        </div>
-      </li>
-
-      <li class="message">
-        <p class="messageContent">
-          Sem dúvida as palestras vão ser úteis para a minha carreira e para a
-          de muitos 😍 #gorocket
-        </p>
-        <div class="messageUser">
-          <div class="userImage">
-            <img
-              src="https://www.pinclipart.com/picdir/middle/93-935675_youtube-computer-icons-cartoon-download-clip-art-strong.png"
-              alt="Dianne Russell"
-            />
-          </div>
-          <span>Gabriel Caiana</span>
+          <span>{{ message.user.name }}</span>
         </div>
       </li>
     </ul>
@@ -55,7 +22,20 @@
 </template>
 
 <script>
-export default {};
+import { useStore } from "vuex"
+import { computed } from "vue"
+export default {
+  setup() {
+    const store = useStore()
+    store.dispatch("messages/getMessages")
+
+    const messages = computed(() => store.getters['messages/getMessages'] )
+
+    return {
+      messages
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

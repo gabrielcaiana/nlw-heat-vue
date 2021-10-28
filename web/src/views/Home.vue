@@ -1,6 +1,6 @@
 <template>
   <div class="contentWrapper">
-    <MessageList />
+     <MessageList />
     <transition name="slide" mode="out-in">
       <LoginBox v-if="!getToken" />
       <SendMessageForm v-else />
@@ -44,17 +44,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: opacity 0.3s, transform 0.5s;
-}
-
-.slide-enter,
-.slide-leave-to {
-  opacity: 0;
-  transform: translateX(-30%);
-}
-
 .contentWrapper {
   max-width: 1200px;
   height: 100vh;
