@@ -17,9 +17,7 @@ export const actions = {
     try {
       const { status, data } = await CreateMessage(payload)
 
-      if (status === 200) {
-        alert("Mensagem cadastrada com sucesso!")
-      }
+      if (status === 200) {}
     } catch (err) {
       throw new Error({ error: err });
     }

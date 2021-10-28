@@ -38,8 +38,9 @@ export default {
 
     const sendMessage = () => {
       store.dispatch("messages/setMessage", message.value)
-    }
 
+      return message.value = ""
+    }
 
     const user = computed(() => store.getters['authentication/getUser']);
 

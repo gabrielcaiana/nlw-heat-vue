@@ -5,14 +5,11 @@
     <ul class="messageList">
       <li v-for="message in messages" :key="message.id" class="message">
         <p class="messageContent">
-         {{message.text}}
+          {{ message.text }}
         </p>
         <div class="messageUser">
           <div class="userImage">
-            <img
-              :src="message.user.avatar_url"
-              :alt="message.user.name"
-            />
+            <img :src="message.user.avatar_url" :alt="message.user.name" />
           </div>
           <span>{{ message.user.name }}</span>
         </div>
@@ -22,19 +19,36 @@
 </template>
 
 <script>
-import { useStore } from "vuex"
-import { computed } from "vue"
+import { io } from 'socket.io-client';
+
+import { useStore } from 'vuex';
+import { computed, watch, ref } from 'vue';
 export default {
   setup() {
-    const store = useStore()
-    store.dispatch("messages/getMessages")
+    const store = useStore();
+    store.dispatch('messages/getMessages');
 
-    const messages = computed(() => store.getters['messages/getMessages'] )
+    let messages = computed(() => store.getters['messages/getMessages']);
+  
+    const messageQueue = ref([]);
+
+    const socket = io('http://localhost:4000');
+
+    socket.on('new_message', (newMessage) => {
+      messageQueue.value.push(newMessage);
+    });
+
+    watch(() => [...messageQueue.value],(currentValue) => {
+        if(currentValue.length > 0) {
+          store.dispatch('messages/getMessages');
+        }
+      }
+    );
 
     return {
-      messages
-    }
-  }
+      messages,
+    };
+  },
 };
 </script>
 
