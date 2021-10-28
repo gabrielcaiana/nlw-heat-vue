@@ -14,11 +14,12 @@
       </span>
     </header>
 
-    <form @submit.prevent="" class="sendMessageForm">
+    <form @submit.prevent="sendMessage" class="sendMessageForm">
       <label for="message">Mensagem</label>
       <textarea
         name="message"
         id="message"
+        v-model="message"
         placeholder="Qual sua expectativa para o evento?"
       ></textarea>
       <button type="submit">Enviar mensagem</button>
@@ -33,6 +34,13 @@ export default {
   setup() {
     const store = useStore();
 
+    const message = ref("")
+
+    const sendMessage = () => {
+      console.log(message.value)
+    }
+
+
     const user = computed(() => store.getters['authentication/getUser']);
 
     const logout = () => {
@@ -42,6 +50,8 @@ export default {
     return {
       logout,
       user,
+      message,
+      sendMessage
     };
   },
 };
