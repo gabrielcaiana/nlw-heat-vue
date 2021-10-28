@@ -5,15 +5,12 @@
     </button>
     <header class="userInformation">
       <div class="userImage">
-        <img
-          :src="user.avatar_url"
-          :alt="user.name"
-        />
+        <img :src="user.avatar_url" :alt="user.name" />
       </div>
       <strong class="userName"> {{ user.name }}</strong>
       <span class="userGithub">
         <i class="fab fa-github"></i>
-        {{ user.login}}
+        {{ user.login }}
       </span>
     </header>
 
@@ -36,7 +33,7 @@ export default {
   setup() {
     const store = useStore();
 
-    const user = computed(() => store.getters['authentication/getUser'])
+    const user = computed(() => store.getters['authentication/getUser']);
 
     const logout = () => {
       store.dispatch('authentication/getLogout');
@@ -44,7 +41,7 @@ export default {
 
     return {
       logout,
-      user
+      user,
     };
   },
 };
@@ -89,7 +86,7 @@ export default {
       background: linear-gradient(100deg, #ff008e 0.48%, #ffcd1e 100%);
       border-radius: 50%;
       line-height: 0;
-  
+
       img {
         width: 94px;
         height: 94px;
