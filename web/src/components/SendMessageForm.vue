@@ -6,14 +6,14 @@
     <header class="userInformation">
       <div class="userImage">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXEwLQ0IqyfUVoiusLx97FNW4Iyi5a95h7DQ&usqp=CAU"
-          alt="Gabriel Caiana"
+          :src="user.avatar_url"
+          :alt="user.name"
         />
       </div>
-      <strong class="userName"> Gabriel Caiana </strong>
+      <strong class="userName"> {{ user.name }}</strong>
       <span class="userGithub">
         <i class="fab fa-github"></i>
-        gabrielcaiana
+        {{ user.login}}
       </span>
     </header>
 
@@ -30,19 +30,23 @@
 </template>
 
 <script>
-import {useStore } from "vuex"
+import { useStore } from 'vuex';
+import { computed, ref } from 'vue';
 export default {
   setup() {
-    const store = useStore()
+    const store = useStore();
+
+    const user = computed(() => store.getters['authentication/getUser'])
 
     const logout = () => {
-      store.dispatch("authentication/getLogout")
-    }
+      store.dispatch('authentication/getLogout');
+    };
 
     return {
-      logout
-    }
-  }
+      logout,
+      user
+    };
+  },
 };
 </script>
 
@@ -85,12 +89,13 @@ export default {
       background: linear-gradient(100deg, #ff008e 0.48%, #ffcd1e 100%);
       border-radius: 50%;
       line-height: 0;
-
+  
       img {
         width: 94px;
         height: 94px;
         border-radius: 50%;
         border: 6px solid #121214;
+        object-fit: cover;
       }
     }
 

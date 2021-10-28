@@ -20,10 +20,10 @@ export const actions = {
 
   getProfile: async ({ commit }) => {
     try {
-      const { status, data } = await getProfile('profile');
-
+      const { status, data } = await getProfile();
+      
       if (status === 200) {
-        commit('setUser', data);
+        await commit('setUser', data);
       }
     } catch (err) {
       throw new Error({ error: err });

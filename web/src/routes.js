@@ -15,14 +15,14 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async(to, from, next) => {
   const token = localStorage.getItem('@nlw7:token');
 
   if (!token) {
     next();
   } else {
     store.commit('authentication/setToken', token);
-    store.dispatch('authentication/getProfile')
+    await store.dispatch('authentication/getProfile');
   }
 
   next();
