@@ -37,7 +37,7 @@ export default {
     const message = ref("")
 
     const sendMessage = () => {
-      console.log(message.value)
+      store.dispatch("messages/setMessage", message.value)
     }
 
 
