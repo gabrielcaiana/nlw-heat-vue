@@ -18,38 +18,32 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { io } from 'socket.io-client';
-
 import { useStore } from 'vuex';
 import { computed, watch, ref } from 'vue';
-export default {
-  setup() {
-    const store = useStore();
-    store.dispatch('messages/getMessages');
 
-    let messages = computed(() => store.getters['messages/getMessages']);
-  
-    const messageQueue = ref([]);
+const store = useStore();
+store.dispatch('messages/getMessages');
 
-    const socket = io('http://localhost:4000');
+let messages = computed(() => store.getters['messages/getMessages']);
 
-    socket.on('new_message', (newMessage) => {
-      messageQueue.value.push(newMessage);
-    });
+const messageQueue = ref([]);
 
-    watch(() => [...messageQueue.value],(currentValue) => {
-        if(currentValue.length > 0) {
-          store.dispatch('messages/getMessages');
-        }
-      }
-    );
+const socket = io('http://localhost:4000');
 
-    return {
-      messages,
-    };
-  },
-};
+socket.on('new_message', (newMessage) => {
+  messageQueue.value.push(newMessage);
+});
+
+watch(
+  () => [...messageQueue.value],
+  (currentValue) => {
+    if (currentValue.length > 0) {
+      store.dispatch('messages/getMessages');
+    }
+  }
+);
 </script>
 
 <style lang="scss" scoped>

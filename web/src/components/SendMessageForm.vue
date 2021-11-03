@@ -27,34 +27,24 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useStore } from 'vuex';
 import { computed, ref } from 'vue';
-export default {
-  setup() {
-    const store = useStore();
 
-    const message = ref("")
+const store = useStore();
 
-    const sendMessage = () => {
-      store.dispatch("messages/setMessage", message.value)
+const message = ref('');
 
-      return message.value = ""
-    }
+const sendMessage = () => {
+  store.dispatch('messages/setMessage', message.value);
 
-    const user = computed(() => store.getters['authentication/getUser']);
+  return (message.value = '');
+};
 
-    const logout = () => {
-      store.dispatch('authentication/getLogout');
-    };
+const user = computed(() => store.getters['authentication/getUser']);
 
-    return {
-      logout,
-      user,
-      message,
-      sendMessage
-    };
-  },
+const logout = () => {
+  store.dispatch('authentication/getLogout');
 };
 </script>
 
